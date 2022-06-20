@@ -70,3 +70,4 @@ release/**
 .reuse/**
 .vscode/**
 sonar-project.properties
+analysis_options.yaml

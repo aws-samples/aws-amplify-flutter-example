@@ -1,0 +1,21 @@
+{
+    "appName": "powertoolkit",
+    "roleName": "pinpointLambdaRole3ea06c59",
+    "cloudformationPolicyName": "cloudformationPolicy3ea06c59",
+    "cloudWatchPolicyName": "cloudWatchPolicy3ea06c59",
+    "pinpointPolicyName": "pinpointPolicy3ea06c59",
+    "authPolicyName": "pinpoint_amplify_3ea06c59",
+    "unauthPolicyName": "pinpoint_amplify_3ea06c59",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

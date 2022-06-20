@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "storage": {
+      "OCRRecord:@model(appsync)": [
+        "read",
+        "update"
+      ]
+    }
+  },
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "aiKitsInvokeUrl",
+      "environmentVariableName": "AIKitsInvokeURL"
+    }
+  ]
+}

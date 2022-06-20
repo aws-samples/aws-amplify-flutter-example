@@ -1,0 +1,38 @@
+{
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "us-east-2",
+      "eventTime": "2022-05-16T11:51:28.189Z",
+      "eventName": "ObjectCreated:CompleteMultipartUpload",
+      "userIdentity": {
+        "principalId": "AWS:AROA4CRZL7xxxxx:CognitoIdentityCredentials"
+      },
+      "requestParameters": {
+        "sourceIPAddress": "206.190.239.126"
+      },
+      "responseElements": {
+        "x-amz-request-id": "xxxx",
+        "x-amz-id-2": "xxxx/s6dW9PYIT6AjuLPJVM4vdLRGMT1bIIsXYSkNoGaiaCtCBsDRoKSn9r22vzhQNYwvCPnI="
+      },
+      "s3": {
+        "s3SchemaVersion": "1.0",
+        "configurationId": "fc334d00-xxx-xxx-xxxx-71a50ed8d12f",
+        "bucket": {
+          "name": "powertoolkit108bc98519984d9cb99b0cf3a15eba62150526-dev",
+          "ownerIdentity": {
+            "principalId": "A2TBLL1JN40KYC"
+          },
+          "arn": "arn:aws:s3:::powertoolkit108bc98519984d9cb99b0cf3a15eba62150526-dev"
+        },
+        "object": {
+          "key": "private/us-east-2%3Af4727ec3-1786-4a5b-8a2c-4aeb9be5c3b6/ocrImage/4c49fcba-8155-442f-9c07-5bc99c70905d.jpg",
+          "size": 709107,
+          "eTag": "44d5f72a8982e2bac30ff1bd5032d41e",
+          "sequencer": "0062823A68CCD8EF2A"
+        }
+      }
+    }
+  ]
+}

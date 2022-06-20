@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "powertoolkit",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/jasonzjs/Workspaces_app/PowerToolkit/amplify/backend/api/powertoolkit/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authpowertoolkita71177be"
+    },
+    "additionalAuthTypes": [],
+    "conflictResolution": {}
+  }
+}

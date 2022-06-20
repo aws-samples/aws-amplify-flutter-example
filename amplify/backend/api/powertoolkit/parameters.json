@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "powertoolkit",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authpowertoolkita71177be",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2022-05-09T12:16:22.698Z"
+}

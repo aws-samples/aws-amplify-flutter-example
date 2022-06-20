@@ -1,0 +1,20 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+
+type OCRRecord @model @auth(rules: [{allow: owner}]) {
+    id: ID!
+    fullKey: String
+    privateKey: String
+    content: String
+    userID: ID! @index(name: "byUser")
+}
+
+type User @model @auth(rules: [{allow: owner}]) {
+    id: ID!
+    username: String
+    email: String
+    avatarKey: String
+    description: String
+    deviceId: String
+    OCRRecords: [OCRRecord] @hasMany(indexName: "byUser", fields: ["id"])
+}

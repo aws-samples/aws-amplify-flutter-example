@@ -1,0 +1,53 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-powertoolkit-dev-150526-authRole",
+      "UnauthRoleArn": "arn:aws:iam::830122754015:role/amplify-powertoolkit-dev-150526-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::830122754015:role/amplify-powertoolkit-dev-150526-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-powertoolkit-dev-150526-deployment",
+      "UnauthRoleName": "amplify-powertoolkit-dev-150526-unauthRole",
+      "StackName": "amplify-powertoolkit-dev-150526",
+      "StackId": "arn:aws:cloudformation:us-east-2:830122754015:stack/amplify-powertoolkit-dev-150526/15a15c20-cdd4-11ec-a770-024e1bea4a8c",
+      "AmplifyAppId": "d3jri2wze2cdig"
+    },
+    "categories": {
+      "auth": {
+        "powertoolkita71177be": {},
+        "true": {}
+      },
+      "function": {
+        "S3Trigger2a9347b5": {
+          "deploymentBucketName": "amplify-powertoolkit-dev-150526-deployment",
+          "s3Key": "amplify-builds/S3Trigger2a9347b5-4e5867766d4e4c765276-build.zip",
+          "aiKitsInvokeUrl": "https://kp6faf3t2c.execute-api.us-east-1.amazonaws.com/prod/ocr"
+        }
+      }
+    }
+  },
+  "demo": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-powertoolkit-demo-164809-authRole",
+      "UnauthRoleArn": "arn:aws:iam::830122754015:role/amplify-powertoolkit-demo-164809-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::830122754015:role/amplify-powertoolkit-demo-164809-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-powertoolkit-demo-164809-deployment",
+      "UnauthRoleName": "amplify-powertoolkit-demo-164809-unauthRole",
+      "StackName": "amplify-powertoolkit-demo-164809",
+      "StackId": "arn:aws:cloudformation:us-east-2:830122754015:stack/amplify-powertoolkit-demo-164809/3a1de1c0-ee1a-11ec-b4c2-0a9eb169da92",
+      "AmplifyAppId": "d3jri2wze2cdig"
+    },
+    "categories": {
+      "auth": {
+        "powertoolkita71177be": {}
+      },
+      "function": {
+        "S3Trigger2a9347b5": {
+          "aiKitsInvokeUrl": "https://kp6faf3t2c.execute-api.us-east-1.amazonaws.com/prod/ocr",
+          "deploymentBucketName": "amplify-powertoolkit-demo-164809-deployment",
+          "s3Key": "amplify-builds/S3Trigger2a9347b5-356d5156445368393043-build.zip"
+        }
+      }
+    }
+  }
+}

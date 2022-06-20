@@ -1,0 +1,186 @@
+PODS:
+  - Amplify (1.23.0):
+    - Amplify/Default (= 1.23.0)
+  - Amplify/Default (1.23.0)
+  - amplify_analytics_pinpoint_ios (0.0.1):
+    - Amplify (= 1.23.0)
+    - amplify_core
+    - AmplifyPlugins/AWSPinpointAnalyticsPlugin (= 1.23.0)
+    - Flutter
+  - amplify_api (0.0.1):
+    - Amplify (= 1.23.0)
+    - amplify_core
+    - AmplifyPlugins/AWSAPIPlugin (= 1.23.0)
+    - Flutter
+    - SwiftFormat/CLI
+    - SwiftLint
+  - amplify_auth_cognito_ios (0.0.1):
+    - Amplify (= 1.23.0)
+    - amplify_core
+    - AmplifyPlugins/AWSCognitoAuthPlugin (= 1.23.0)
+    - Flutter
+    - ObjectMapper
+  - amplify_core (0.0.1):
+    - Flutter
+    - SwiftFormat/CLI
+    - SwiftLint
+  - amplify_flutter (0.0.1):
+    - Amplify (= 1.23.0)
+    - amplify_core
+    - AmplifyPlugins/AWSCognitoAuthPlugin (= 1.23.0)
+    - AWSPluginsCore (= 1.23.0)
+    - Flutter
+    - SwiftFormat/CLI
+    - SwiftLint
+  - amplify_storage_s3_ios (0.0.1):
+    - Amplify (= 1.23.0)
+    - amplify_core
+    - AmplifyPlugins/AWSS3StoragePlugin (= 1.23.0)
+    - Flutter
+  - AmplifyPlugins/AWSAPIPlugin (1.23.0):
+    - AppSyncRealTimeClient (~> 1.8)
+    - AWSCore (~> 2.27.0)
+    - AWSPluginsCore (= 1.23.0)
+  - AmplifyPlugins/AWSCognitoAuthPlugin (1.23.0):
+    - AWSAuthCore (~> 2.27.0)
+    - AWSCognitoIdentityProvider (~> 2.27.0)
+    - AWSCognitoIdentityProviderASF (~> 2.27.0)
+    - AWSCore (~> 2.27.0)
+    - AWSMobileClient (~> 2.27.0)
+    - AWSPluginsCore (= 1.23.0)
+  - AmplifyPlugins/AWSPinpointAnalyticsPlugin (1.23.0):
+    - AWSCore (~> 2.27.0)
+    - AWSPinpoint (~> 2.27.0)
+    - AWSPluginsCore (= 1.23.0)
+  - AmplifyPlugins/AWSS3StoragePlugin (1.23.0):
+    - AWSCore (~> 2.27.0)
+    - AWSPluginsCore (= 1.23.0)
+    - AWSS3 (~> 2.27.0)
+  - AppSyncRealTimeClient (1.9.1):
+    - Starscream (~> 4.0.4)
+  - AWSAuthCore (2.27.7):
+    - AWSCore (= 2.27.7)
+  - AWSCognitoIdentityProvider (2.27.7):
+    - AWSCognitoIdentityProviderASF (= 2.27.7)
+    - AWSCore (= 2.27.7)
+  - AWSCognitoIdentityProviderASF (2.27.7):
+    - AWSCore (= 2.27.7)
+  - AWSCore (2.27.7)
+  - AWSMobileClient (2.27.7):
+    - AWSAuthCore (= 2.27.7)
+    - AWSCognitoIdentityProvider (= 2.27.7)
+    - AWSCognitoIdentityProviderASF (= 2.27.7)
+    - AWSCore (= 2.27.7)
+  - AWSPinpoint (2.27.7):
+    - AWSCore (= 2.27.7)
+  - AWSPluginsCore (1.23.0):
+    - Amplify (= 1.23.0)
+    - AWSCore (~> 2.27.0)
+  - AWSS3 (2.27.7):
+    - AWSCore (= 2.27.7)
+  - device_info_plus (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - image_picker_ios (0.0.1):
+    - Flutter
+  - ObjectMapper (4.2.0)
+  - path_provider_ios (0.0.1):
+    - Flutter
+  - sqflite (0.0.2):
+    - Flutter
+    - FMDB (>= 2.7.5)
+  - Starscream (4.0.4)
+  - SwiftFormat/CLI (0.49.7)
+  - SwiftLint (0.47.1)
+
+DEPENDENCIES:
+  - amplify_analytics_pinpoint_ios (from `.symlinks/plugins/amplify_analytics_pinpoint_ios/ios`)
+  - amplify_api (from `.symlinks/plugins/amplify_api/ios`)
+  - amplify_auth_cognito_ios (from `.symlinks/plugins/amplify_auth_cognito_ios/ios`)
+  - amplify_core (from `.symlinks/plugins/amplify_core/ios`)
+  - amplify_flutter (from `.symlinks/plugins/amplify_flutter/ios`)
+  - amplify_storage_s3_ios (from `.symlinks/plugins/amplify_storage_s3_ios/ios`)
+  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
+  - Flutter (from `Flutter`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Amplify
+    - AmplifyPlugins
+    - AppSyncRealTimeClient
+    - AWSAuthCore
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
+    - AWSCore
+    - AWSMobileClient
+    - AWSPinpoint
+    - AWSPluginsCore
+    - AWSS3
+    - FMDB
+    - ObjectMapper
+    - Starscream
+    - SwiftFormat
+    - SwiftLint
+
+EXTERNAL SOURCES:
+  amplify_analytics_pinpoint_ios:
+    :path: ".symlinks/plugins/amplify_analytics_pinpoint_ios/ios"
+  amplify_api:
+    :path: ".symlinks/plugins/amplify_api/ios"
+  amplify_auth_cognito_ios:
+    :path: ".symlinks/plugins/amplify_auth_cognito_ios/ios"
+  amplify_core:
+    :path: ".symlinks/plugins/amplify_core/ios"
+  amplify_flutter:
+    :path: ".symlinks/plugins/amplify_flutter/ios"
+  amplify_storage_s3_ios:
+    :path: ".symlinks/plugins/amplify_storage_s3_ios/ios"
+  device_info_plus:
+    :path: ".symlinks/plugins/device_info_plus/ios"
+  Flutter:
+    :path: Flutter
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
+
+SPEC CHECKSUMS:
+  Amplify: 010d6a71db20812d9e3062db1fe827393d01e584
+  amplify_analytics_pinpoint_ios: 6353367c6b59d271fbea2715c5e257e5a84a89e4
+  amplify_api: e002dc6c1abab0d50bd8e4fca5327eed2cab2eee
+  amplify_auth_cognito_ios: c67d4bf0901717cb193f16ed24c389be7f4d7daf
+  amplify_core: e67fe0c53845db08aced670bfc7370b1329d2798
+  amplify_flutter: 0cfb67a9864be1605c6659635c2b98700fe8c34d
+  amplify_storage_s3_ios: 9f909ed387be893ee4a26b040ad1fb7212b9e14d
+  AmplifyPlugins: d939707cf36dfcd53c5fd6533e842e323a2287ab
+  AppSyncRealTimeClient: cdee78ab78249cb87a71d975e1436e692813a606
+  AWSAuthCore: 039a730c4608a862e114a7eabcf09e1451335a75
+  AWSCognitoIdentityProvider: b8d5b7a15d1b418658e591fce2aec82091254f0e
+  AWSCognitoIdentityProviderASF: 70269c1a788f3705d98e31dc8c8cebfa32535103
+  AWSCore: 9b302330a83a8c0ea1a22b1f115d6af14f4429e3
+  AWSMobileClient: c9063df967681d42522c2e19804d6cfca45361e4
+  AWSPinpoint: a1a03c1e62b8a40382414c6630628a51304ad680
+  AWSPluginsCore: 120cfa265293694921b6595fe00d1cb5ab558847
+  AWSS3: 6e41ccb946031c1e49c899563e5ecf42aec63692
+  device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
+  Flutter: 405776dd0763d7e32a8f989d4e271ca1317d080c
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  SwiftFormat: b70e3c776a74c67ce8bd140425a8c86d4a843759
+  SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
+
+PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
+
+COCOAPODS: 1.11.2

@@ -1,0 +1,17 @@
+{
+  "resourceName": "powerToolkitStorage",
+  "policyUUID": "778be686",
+  "bucketName": "powertoolkit108bc98519984d9cb99b0cf3a15eba62",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Trigger2a9347b5",
+  "groupAccess": {}
+}
