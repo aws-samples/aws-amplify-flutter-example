@@ -78,7 +78,7 @@ class AppState extends State<MyApp> {
 
       print('Successfully configured Amplify.');
     } catch (e) {
-      print('Could not configure Amplify.');
+      print('Could not configure Amplify. error: ' + e.toString());
     }
   }
 }
