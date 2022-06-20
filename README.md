@@ -10,7 +10,7 @@ This is a mobile application based on flutter and amplify, including text recogn
 
 ## Table of Contents
 
-- [Environment requirements](#Environment requirements)
+- [Environment requirements](#environment-requirements)
 - [Features](#features)
 - [Prototype](#prototype)
 - [Architecture](#architecture)
