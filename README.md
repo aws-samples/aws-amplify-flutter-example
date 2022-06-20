@@ -54,6 +54,13 @@ This is a mobile application based on flutter and amplify, including text recogn
 
 ## Development
 
+### How to use
+If you want to use the OCR Solution on the application, you need to deploy the Text Recognition (OCR) Solution provided by [AWS AI-Solution Kit](https://www.amazonaws.cn/en/solutions/ai-solution-kit/). you can follow [the deployment guide](https://awslabs.github.io/aws-ai-solution-kit/en/deploy-general-ocr/) here.
+
+Then you need to initialize the amplify configuration by executing the command ```amplify push```, this will generate amplifyconfiguration.dart under lib folder.
+
+Now, you can install the flutter dependencies by using ```flutter pub get```, and run the application on simulator or devices.
+
 ### Workshop for basic features
 
 In this workshop, you will build an application with the following features:
