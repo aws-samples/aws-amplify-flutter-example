@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "aws-sdk": "^2.1135.0",
+    "aws-sdk": "^2.1354.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.6"
   }
