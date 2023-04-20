@@ -58,6 +58,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    namespace 'com.amazon.jasonzjs.power_toolkit'
 }
 
 flutter {

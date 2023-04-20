@@ -47,6 +47,7 @@ class AppState extends State<MyApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        debugShowCheckedModeBanner: false,
         builder: Authenticator.builder(),
         home: MultiRepositoryProvider(
           providers: [
