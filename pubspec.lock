@@ -81,6 +81,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  amplify_authenticator:
+    dependency: "direct main"
+    description:
+      name: amplify_authenticator
+      sha256: e211697376833fdc65c38a38d17ff61c6390444f304e2cb854a97b6ce0e1d758
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   amplify_core:
     dependency: transitive
     description:
@@ -438,6 +446,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:

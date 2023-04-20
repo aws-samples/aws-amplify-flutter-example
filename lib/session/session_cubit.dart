@@ -19,6 +19,19 @@ class SessionCubit extends Cubit<SessionState> {
   SessionCubit({required this.authRepo, required this.dataRepo})
       : super(const UnknownSessionState()) {
     attemptAutoLogin();
+    Amplify.Hub.listen(HubChannel.Auth, (event) {
+      final user = event.payload;
+      switch (event.type) {
+        case AuthHubEventType.signedIn:
+          createSession(user!.userId, user.username);
+          break;
+        case AuthHubEventType.signedOut:
+        case AuthHubEventType.sessionExpired:
+        case AuthHubEventType.userDeleted:
+          emit(const Unauthenticated());
+          break;
+      }
+    });
   }
 
   final AuthRepository authRepo;
@@ -28,7 +41,7 @@ class SessionCubit extends Cubit<SessionState> {
 
   User get currentUser => (state as Authenticated).user;
 
-  void attemptAutoLogin() async {
+  Future<void> attemptAutoLogin() async {
     try {
       safePrint('attemptAutoLogin, start.');
       final userId = await authRepo.attemptAutoLogin();
@@ -64,14 +77,8 @@ class SessionCubit extends Cubit<SessionState> {
   }
 
   void signOut() {
-    _destroySession();
-  }
-
-  void _destroySession() {
-    authRepo.signOut();
     AnalyticsService.log(SignOutEvent());
-    emit(const Unauthenticated());
-    safePrint('session destroyed.');
+    authRepo.signOut();
   }
 
   Future<String?> _getDeviceId() async {

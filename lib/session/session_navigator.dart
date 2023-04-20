@@ -7,8 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/app_nav_cubit.dart';
 import '/app_navigator.dart';
-import '/auth/auth_cubit.dart';
-import '/auth/auth_navigator.dart';
 import '/loading_view.dart';
 import '/session/session_cubit.dart';
 import '/session/session_state.dart';
@@ -23,21 +21,11 @@ class SessionNavigator extends StatelessWidget {
         return Navigator(
           pages: [
             // Show loading screen
-            if (state is UnknownSessionState)
-              const MaterialPage(child: LoadingView()),
-
-            // Show auth flow
-            if (state is Unauthenticated)
-              MaterialPage(
-                child: BlocProvider(
-                  create: (context) =>
-                      AuthCubit(sessionCubit: context.read<SessionCubit>()),
-                  child: const AuthNavigator(),
-                ),
-              ),
+            if (state is! Authenticated)
+              const MaterialPage(child: LoadingView())
 
             // Show session flow, managed by AppNavigator.
-            if (state is Authenticated)
+            else
               MaterialPage(
                 child: BlocProvider(
                   create: (context) => AppNavCubit(),
