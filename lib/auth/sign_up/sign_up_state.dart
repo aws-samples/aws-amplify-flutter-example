@@ -5,6 +5,13 @@
 import '/auth/form_submission_status.dart';
 
 class SignUpState {
+  const SignUpState({
+    this.username = '',
+    this.email = '',
+    this.password = '',
+    this.formStatus = const InitialFormStatus(),
+  });
+
   final String username;
   bool get isValidUsername => username.length > 3;
 
@@ -15,13 +22,6 @@ class SignUpState {
   bool get isValidPassword => password.length > 6;
 
   final FormSubmissionStatus formStatus;
-
-  SignUpState({
-    this.username = '',
-    this.email = '',
-    this.password = '',
-    this.formStatus = const InitialFormStatus(),
-  });
 
   SignUpState copyWith({
     String? username,

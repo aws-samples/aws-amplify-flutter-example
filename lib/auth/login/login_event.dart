@@ -2,19 +2,22 @@
 //
 // SPDX-License-Identifier: MIT-0
 
-abstract class LoginEvent {}
+abstract class LoginEvent {
+  const LoginEvent();
+}
 
 class LoginUsernameChanged extends LoginEvent {
-  final String username;
+  const LoginUsernameChanged({required this.username});
 
-  LoginUsernameChanged({required this.username});
+  final String username;
 }
 
 class LoginPasswordChanged extends LoginEvent {
-  final String password;
+  const LoginPasswordChanged({required this.password});
 
-  LoginPasswordChanged({required this.password});
+  final String password;
 }
 
-class LoginSubmitted extends LoginEvent {}
-
+class LoginSubmitted extends LoginEvent {
+  const LoginSubmitted();
+}

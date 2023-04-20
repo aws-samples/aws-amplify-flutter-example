@@ -6,8 +6,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/solution/ocr/detail/detail_event.dart';
 
+import '/solution/ocr/detail/detail_event.dart';
 import 'detail_bloc.dart';
 import 'detail_state.dart';
 
@@ -22,7 +22,9 @@ class OCRDetailView extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
-            onPressed: () => {context.read<OCRDetailBloc>().add(OCRDetailRefreshEvent())},
+            onPressed: () => {
+              context.read<OCRDetailBloc>().add(const OCRDetailRefreshEvent())
+            },
           )
         ],
       ),
@@ -49,33 +51,38 @@ class OCRDetailView extends StatelessWidget {
   }
 
   Widget _body() {
-    return BlocBuilder<OCRDetailBloc, OCRDetailState>(builder: (context, state) {
-      return Scaffold(
-        body: _contentWithScore(state),
-      );
-    });
+    return BlocBuilder<OCRDetailBloc, OCRDetailState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: _contentWithScore(state),
+        );
+      },
+    );
   }
 
   ListView _contentWithScore(OCRDetailState state) {
-    List<OCRContent> list = state.contentList!;
+    final list = state.contentList!;
     return ListView.builder(
-        itemCount: list.length + 1,
-        itemBuilder: (context, index) {
-          return index == 0
-              ? Card(
-                  child: CachedNetworkImage(
-                    imageUrl: state.record!.url,
-                    placeholder: _loader,
-                    errorWidget: _error,
-                  ),
-                )
-              : ListTile(
-                  title: Text('words: ${list[index - 1].words}'),
-                  subtitle: Text('score: ${list[index - 1].score}'),
-                  trailing: const Icon(Icons.copy),
-                  onTap: () => {Clipboard.setData(ClipboardData(text: list[index - 1].words))},
-                );
-        });
+      itemCount: list.length + 1,
+      itemBuilder: (context, index) {
+        return index == 0
+            ? Card(
+                child: CachedNetworkImage(
+                  imageUrl: state.record!.url,
+                  placeholder: _loader,
+                  errorWidget: _error,
+                ),
+              )
+            : ListTile(
+                title: Text('words: ${list[index - 1].words}'),
+                subtitle: Text('score: ${list[index - 1].score}'),
+                trailing: const Icon(Icons.copy),
+                onTap: () => {
+                  Clipboard.setData(ClipboardData(text: list[index - 1].words))
+                },
+              );
+      },
+    );
   }
 
   Widget _error(BuildContext context, String url, dynamic error) {

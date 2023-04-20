@@ -3,15 +3,15 @@
 // SPDX-License-Identifier: MIT-0
 
 class AuthCredentials {
-  final String username;
-  final String password;
-  final String? email;
-  String? userId;
-
-  AuthCredentials({
+  const AuthCredentials({
     required this.username,
     required this.password,
     this.email,
     this.userId,
   });
+
+  final String username;
+  final String password;
+  final String? email;
+  final String? userId;
 }

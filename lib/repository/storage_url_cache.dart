@@ -5,22 +5,22 @@
 class StorageUrlCache {
   StorageUrlCache._privateConstructor();
 
-  static final StorageUrlCache _instance = StorageUrlCache._privateConstructor();
+  static final StorageUrlCache _instance =
+      StorageUrlCache._privateConstructor();
 
   static StorageUrlCache get instance => _instance;
 
   final Map<String, String> _urlCache = {};
 
-  Future<String> getUrl(String imageKey, Function getUrl) async {
-    String? url = _urlCache[imageKey];
+  Future<String> getUrl(
+    String imageKey,
+    Future<String> Function() getUrl,
+  ) async {
+    var url = _urlCache[imageKey];
 
     if (url == null) {
-      try {
-        url = await getUrl();
-        _urlCache[imageKey] = url!;
-      } catch (e) {
-        rethrow;
-      }
+      url = await getUrl();
+      _urlCache[imageKey] = url;
     }
     return url;
   }

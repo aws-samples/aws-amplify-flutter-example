@@ -9,27 +9,25 @@ import '../record.dart';
 enum LoadingState { initial, inProgress, success, failed }
 
 class OCRContent {
+  const OCRContent(this.words, this.score);
+
   final String words;
   final double score;
-
-  OCRContent(this.words, this.score);
 }
 
 class OCRDetailState {
-  final String? id;
-  final Record? record;
-  List<OCRContent>? contentList;
-  LoadingState loadingState;
-  final Exception? error;
-
   OCRDetailState({
     this.id,
     this.record,
     this.loadingState = LoadingState.initial,
     this.error,
-  }) {
-    contentList = _parseContent(record?.content);
-  }
+  }) : contentList = _parseContent(record?.content);
+
+  final String? id;
+  final Record? record;
+  final List<OCRContent>? contentList;
+  final LoadingState loadingState;
+  final Exception? error;
 
   OCRDetailState copyWith({
     String? id,
@@ -45,13 +43,15 @@ class OCRDetailState {
     );
   }
 
-  List<OCRContent> _parseContent(String? content) {
+  static List<OCRContent> _parseContent(String? content) {
     if (content == null) return [];
 
-    final List<dynamic> dataList = jsonDecode(content);
-    List<OCRContent> list = [];
-    for (Map<String, dynamic> item in dataList) {
-      list.add(OCRContent(item["words"], item["score"]));
+    final dataList = jsonDecode(content) as List<dynamic>;
+    final list = <OCRContent>[];
+    for (final item in dataList.cast<Map<String, dynamic>>()) {
+      list.add(
+        OCRContent(item['words'] as String, item['score'] as double),
+      );
     }
     return list;
   }

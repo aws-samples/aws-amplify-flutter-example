@@ -4,18 +4,22 @@
 
 import 'package:image_picker/image_picker.dart';
 
-abstract class ProfileEvent {}
+abstract class ProfileEvent {
+  const ProfileEvent();
+}
 
-class ChangeAvatarRequest extends ProfileEvent {}
+class ChangeAvatarRequest extends ProfileEvent {
+  const ChangeAvatarRequest();
+}
 
 class OpenImagePicker extends ProfileEvent {
-  final ImageSource imageSource;
+  const OpenImagePicker({required this.imageSource});
 
-  OpenImagePicker({required this.imageSource});
+  final ImageSource imageSource;
 }
 
 class ProvideImagePath extends ProfileEvent {
-  final String avatarPath;
+  const ProvideImagePath({required this.avatarPath});
 
-  ProvideImagePath({required this.avatarPath});
+  final String avatarPath;
 }

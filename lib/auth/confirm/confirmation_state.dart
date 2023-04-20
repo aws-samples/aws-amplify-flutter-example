@@ -5,15 +5,15 @@
 import '/auth/form_submission_status.dart';
 
 class ConfirmationState {
+  const ConfirmationState({
+    this.code = '',
+    this.formStatus = const InitialFormStatus(),
+  });
+
   final String code;
   bool get isValidCode => code.length == 6;
 
   final FormSubmissionStatus formStatus;
-
-  ConfirmationState({
-    this.code = '',
-    this.formStatus = const InitialFormStatus(),
-  });
 
   ConfirmationState copyWith({
     String? code,

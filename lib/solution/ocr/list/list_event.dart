@@ -4,16 +4,24 @@
 
 import 'package:image_picker/image_picker.dart';
 
-abstract class OCRListEvent {}
+abstract class OCRListEvent {
+  const OCRListEvent();
+}
 
-class OCRListRefreshEvent extends OCRListEvent {}
+class OCRListRefreshEvent extends OCRListEvent {
+  const OCRListRefreshEvent();
+}
 
-class OCRListLoadingMoreEvent extends OCRListEvent {}
+class OCRListLoadingMoreEvent extends OCRListEvent {
+  const OCRListLoadingMoreEvent();
+}
 
-class UploadImageRequest extends OCRListEvent {}
+class UploadImageRequest extends OCRListEvent {
+  const UploadImageRequest();
+}
 
 class OpenImagePicker extends OCRListEvent {
-  final ImageSource imageSource;
+  const OpenImagePicker({required this.imageSource});
 
-  OpenImagePicker({required this.imageSource});
+  final ImageSource imageSource;
 }

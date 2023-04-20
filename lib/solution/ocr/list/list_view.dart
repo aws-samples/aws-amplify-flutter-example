@@ -9,9 +9,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import '/solution/ocr/list/list_event.dart';
-import '/app_nav_cubit.dart';
 
+import '/app_nav_cubit.dart';
+import '/solution/ocr/list/list_event.dart';
 import '../ocr_nav_cubit.dart';
 import 'list_bloc.dart';
 import 'list_state.dart';
@@ -31,16 +31,18 @@ class OCRListView extends StatelessWidget {
         appBar: _appBar(context),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add_a_photo),
-          onPressed: () => {context.read<OCRListBloc>().add(UploadImageRequest())},
+          onPressed: () =>
+              {context.read<OCRListBloc>().add(const UploadImageRequest())},
         ),
         body: Stack(
           children: [
             _linearProgressIndicator(),
             RefreshIndicator(
-                child: _gridViewLoader(),
-                onRefresh: () async {
-                  context.read<OCRListBloc>().add(OCRListRefreshEvent());
-                }),
+              child: _gridViewLoader(),
+              onRefresh: () async {
+                context.read<OCRListBloc>().add(const OCRListRefreshEvent());
+              },
+            ),
             // _uploadImageButton(context),
           ],
         ),
@@ -58,21 +60,24 @@ class OCRListView extends StatelessWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.add_a_photo),
-          onPressed: () => {context.read<OCRListBloc>().add(UploadImageRequest())},
+          onPressed: () =>
+              {context.read<OCRListBloc>().add(const UploadImageRequest())},
         ),
       ],
     );
   }
 
   Widget _linearProgressIndicator() {
-    return BlocBuilder<OCRListBloc, OCRListState>(builder: (context, state) {
-      return state.uploading
-          ? const LinearProgressIndicator(
-              backgroundColor: Colors.white,
-              semanticsLabel: 'uploading progress',
-            )
-          : const SizedBox.shrink();
-    });
+    return BlocBuilder<OCRListBloc, OCRListState>(
+      builder: (context, state) {
+        return state.uploading
+            ? const LinearProgressIndicator(
+                backgroundColor: Colors.white,
+                semanticsLabel: 'uploading progress',
+              )
+            : const SizedBox.shrink();
+      },
+    );
   }
 
   BlocBuilder<OCRListBloc, OCRListState> _gridViewLoader() {
@@ -96,39 +101,48 @@ class OCRListView extends StatelessWidget {
   }
 
   Widget _gridView() {
-    return BlocBuilder<OCRListBloc, OCRListState>(builder: (context, state) {
-      if (state.records!.isEmpty) {
-        return const Center(
-          child: Text('No date. Please upload a new image.'),
-        );
-      }
-      return GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+    return BlocBuilder<OCRListBloc, OCRListState>(
+      builder: (context, state) {
+        if (state.records!.isEmpty) {
+          return const Center(
+            child: Text('No date. Please upload a new image.'),
+          );
+        }
+        return GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+          ),
           itemCount: state.records!.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.all(3.0),
+              padding: const EdgeInsets.all(3),
               child: GestureDetector(
-                onTap: () => BlocProvider.of<OCRNavCubit>(context).showOCRDetail(state.records![index].id),
+                onTap: () => BlocProvider.of<OCRNavCubit>(context)
+                    .showOCRDetail(state.records![index].id),
                 child: CachedNetworkImage(
                   imageUrl: state.records![index].url,
-                  fit: BoxFit.contain, // Ref: https://www.jianshu.com/p/8810bacfe5d4
+                  fit: BoxFit
+                      .contain, // Ref: https://www.jianshu.com/p/8810bacfe5d4
                   placeholder: _loader,
                   errorWidget: _error,
                 ),
               ),
             );
-          });
-    });
+          },
+        );
+      },
+    );
   }
 
   void _showImageSourceActionSheet(BuildContext context) {
-    selectImageSource(imageSource) {
-      context.read<OCRListBloc>().add(OpenImagePicker(imageSource: imageSource));
+    void selectImageSource(ImageSource imageSource) {
+      context
+          .read<OCRListBloc>()
+          .add(OpenImagePicker(imageSource: imageSource));
     }
 
     if (Platform.isIOS) {
-      showCupertinoModalPopup(
+      showCupertinoModalPopup<void>(
         context: context,
         builder: (context) => CupertinoActionSheet(
           actions: [
@@ -150,26 +164,28 @@ class OCRListView extends StatelessWidget {
         ),
       );
     } else {
-      showModalBottomSheet(
+      showModalBottomSheet<void>(
         context: context,
-        builder: (context) => Wrap(children: [
-          ListTile(
-            leading: const Icon(Icons.camera_alt),
-            title: const Text('Camera'),
-            onTap: () {
-              Navigator.pop(context);
-              selectImageSource(ImageSource.camera);
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.photo_album),
-            title: const Text('Gallery'),
-            onTap: () {
-              Navigator.pop(context);
-              selectImageSource(ImageSource.gallery);
-            },
-          ),
-        ]),
+        builder: (context) => Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: const Text('Camera'),
+              onTap: () {
+                Navigator.pop(context);
+                selectImageSource(ImageSource.camera);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.photo_album),
+              title: const Text('Gallery'),
+              onTap: () {
+                Navigator.pop(context);
+                selectImageSource(ImageSource.gallery);
+              },
+            ),
+          ],
+        ),
       );
     }
   }

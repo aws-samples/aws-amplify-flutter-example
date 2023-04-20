@@ -3,16 +3,17 @@
 // SPDX-License-Identifier: MIT-0
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '/auth/auth_credentials.dart';
 import '/session/session_cubit.dart';
 
 enum AuthState { login, signUp, confirmSignUp }
 
 class AuthCubit extends Cubit<AuthState> {
+  AuthCubit({required this.sessionCubit}) : super(AuthState.login);
+
   final SessionCubit sessionCubit;
   AuthCredentials? credentials;
-
-  AuthCubit({required this.sessionCubit}) : super(AuthState.login);
 
   void showLogin() => emit(AuthState.login);
 
@@ -32,6 +33,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthState.confirmSignUp);
   }
 
-  void createSessionAfterAuth(String userId, String username) => sessionCubit.createSession(userId, username);
-
+  void createSessionAfterAuth(String userId, String username) =>
+      sessionCubit.createSession(userId, username);
 }

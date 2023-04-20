@@ -2,12 +2,16 @@
 //
 // SPDX-License-Identifier: MIT-0
 
-abstract class ConfirmationEvent {}
-
-class ConfirmationCodeChanged extends ConfirmationEvent {
-  final String code;
-
-  ConfirmationCodeChanged({required this.code});
+abstract class ConfirmationEvent {
+  const ConfirmationEvent();
 }
 
-class ConfirmationSubmitted extends ConfirmationEvent {}
+class ConfirmationCodeChanged extends ConfirmationEvent {
+  const ConfirmationCodeChanged({required this.code});
+
+  final String code;
+}
+
+class ConfirmationSubmitted extends ConfirmationEvent {
+  const ConfirmationSubmitted();
+}

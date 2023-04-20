@@ -6,7 +6,7 @@ SPDX-License-Identifier: MIT-0
 
 ## AWS-Amplify-Flutter-Example
 
-This is a mobile application based on flutter and amplify, including text recognition (OCR) capabilities provided by [AWS AI-Solution Kit](https://www.amazonaws.cn/en/solutions/ai-solution-kit/).
+This is a mobile application based on Flutter and Amplify, including text recognition (OCR) capabilities provided by [AWS AI-Solution Kit](https://www.amazonaws.cn/en/solutions/ai-solution-kit/).
 
 ## Table of Contents
 
@@ -18,9 +18,9 @@ This is a mobile application based on flutter and amplify, including text recogn
 
 ## Environment requirements
 
-* [Flutter](https://github.com/flutter/flutter) 2.13.0-0.0.pre.965
+* [Flutter](https://github.com/flutter/flutter) >=3.3.0
 * Dart 2.18.0
-* Amplify CLI 8.1.0
+* Amplify CLI >=11.0
 * AWS Account
 * AWS CLI (optional)
 * git 2.34.1

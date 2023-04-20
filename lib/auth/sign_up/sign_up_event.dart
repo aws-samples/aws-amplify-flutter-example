@@ -2,24 +2,28 @@
 //
 // SPDX-License-Identifier: MIT-0
 
-abstract class SignUpEvent {}
+abstract class SignUpEvent {
+  const SignUpEvent();
+}
 
 class SignUpUsernameChanged extends SignUpEvent {
-  final String username;
+  const SignUpUsernameChanged({required this.username});
 
-  SignUpUsernameChanged({required this.username});
+  final String username;
 }
 
 class SignUpEmailChanged extends SignUpEvent {
-  final String email;
+  const SignUpEmailChanged({required this.email});
 
-  SignUpEmailChanged({required this.email});
+  final String email;
 }
 
 class SignUpPasswordChanged extends SignUpEvent {
-  final String password;
+  const SignUpPasswordChanged({required this.password});
 
-  SignUpPasswordChanged({required this.password});
+  final String password;
 }
 
-class SignUpSubmitted extends SignUpEvent {}
+class SignUpSubmitted extends SignUpEvent {
+  const SignUpSubmitted();
+}

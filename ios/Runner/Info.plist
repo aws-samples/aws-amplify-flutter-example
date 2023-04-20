@@ -45,7 +45,8 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
-
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
     <key>NSCameraUsageDescription</key>
     <string>Need the camera to take pictures.</string>
     <key>NSPhotoLibraryUsageDescription</key>
