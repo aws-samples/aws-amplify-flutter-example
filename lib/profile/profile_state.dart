@@ -6,21 +6,20 @@ import '/auth/form_submission_status.dart';
 import '/models/User.dart';
 
 class ProfileState {
-  final User user;
-  final String? avatarPath;
-
-  final FormSubmissionStatus formStatus;
-  bool imageSourceActionSheetIsVisible;
-
-  final bool uploading;
-
-  ProfileState({
+  const ProfileState({
     required this.user,
     this.avatarPath,
     this.formStatus = const InitialFormStatus(),
     this.imageSourceActionSheetIsVisible = false,
     this.uploading = false,
   });
+
+  final User user;
+  final String? avatarPath;
+
+  final FormSubmissionStatus formStatus;
+  final bool imageSourceActionSheetIsVisible;
+  final bool uploading;
 
   ProfileState copyWith({
     User? user,
@@ -33,7 +32,8 @@ class ProfileState {
       user: user ?? this.user,
       avatarPath: avatarPath ?? this.avatarPath,
       formStatus: formStatus ?? this.formStatus,
-      imageSourceActionSheetIsVisible: imageSourceActionSheetIsVisible ?? this.imageSourceActionSheetIsVisible,
+      imageSourceActionSheetIsVisible: imageSourceActionSheetIsVisible ??
+          this.imageSourceActionSheetIsVisible,
       uploading: uploading ?? this.uploading,
     );
   }

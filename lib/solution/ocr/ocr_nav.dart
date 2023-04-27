@@ -23,32 +23,35 @@ class OCRNavigator extends StatelessWidget {
     );
 
     return MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => OCRNavCubit(ocrDetailBloc: ocrDetailBloc)),
-          BlocProvider(create: (context) => ocrDetailBloc),
-          BlocProvider(
-            create: (context) => OCRListBloc(
-              ocrRecordRepo: context.read(),
-              storageRepo: context.read(),
-              sessionCubit: context.read(),
-            )..add(OCRListRefreshEvent()),
-          ),
-        ],
-        child: BlocBuilder<OCRNavCubit, String?>(
-          builder: (context, state) {
-            return Navigator(
-              pages: [
-                // Show list page.
-                const MaterialPage(child: OCRListView()),
-                // Show detail page.
-                if (state != null) const MaterialPage(child: OCRDetailView()),
-              ],
-              onPopPage: (route, result) {
-                BlocProvider.of<OCRNavCubit>(context).popToList();
-                return route.didPop(result);
-              },
-            );
-          },
-        ));
+      providers: [
+        BlocProvider(
+          create: (context) => OCRNavCubit(ocrDetailBloc: ocrDetailBloc),
+        ),
+        BlocProvider(create: (context) => ocrDetailBloc),
+        BlocProvider(
+          create: (context) => OCRListBloc(
+            ocrRecordRepo: context.read(),
+            storageRepo: context.read(),
+            sessionCubit: context.read(),
+          )..add(const OCRListRefreshEvent()),
+        ),
+      ],
+      child: BlocBuilder<OCRNavCubit, String?>(
+        builder: (context, state) {
+          return Navigator(
+            pages: [
+              // Show list page.
+              const MaterialPage(child: OCRListView()),
+              // Show detail page.
+              if (state != null) const MaterialPage(child: OCRDetailView()),
+            ],
+            onPopPage: (route, result) {
+              BlocProvider.of<OCRNavCubit>(context).popToList();
+              return route.didPop(result);
+            },
+          );
+        },
+      ),
+    );
   }
 }

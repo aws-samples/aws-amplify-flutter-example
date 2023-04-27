@@ -4,8 +4,10 @@
 
 import 'dart:io';
 
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '/auth/auth_repository.dart';
 import '/models/User.dart';
 import '/repository/user_repository.dart';
@@ -14,6 +16,24 @@ import '/service/analytics/analytics_service.dart';
 import '/session/session_state.dart';
 
 class SessionCubit extends Cubit<SessionState> {
+  SessionCubit({required this.authRepo, required this.dataRepo})
+      : super(const UnknownSessionState()) {
+    attemptAutoLogin();
+    Amplify.Hub.listen(HubChannel.Auth, (event) {
+      final user = event.payload;
+      switch (event.type) {
+        case AuthHubEventType.signedIn:
+          createSession(user!.userId, user.username);
+          break;
+        case AuthHubEventType.signedOut:
+        case AuthHubEventType.sessionExpired:
+        case AuthHubEventType.userDeleted:
+          emit(const Unauthenticated());
+          break;
+      }
+    });
+  }
+
   final AuthRepository authRepo;
   final UserRepository dataRepo;
 
@@ -21,59 +41,54 @@ class SessionCubit extends Cubit<SessionState> {
 
   User get currentUser => (state as Authenticated).user;
 
-  SessionCubit({required this.authRepo, required this.dataRepo}) : super(UnknownSessionState()) {
-    attemptAutoLogin();
-  }
-
-  void attemptAutoLogin() async {
+  Future<void> attemptAutoLogin() async {
     try {
-      print("attemptAutoLogin, start.");
+      safePrint('attemptAutoLogin, start.');
       final userId = await authRepo.attemptAutoLogin();
-      User? user = await dataRepo.getUserById(userId);
+      final user = await dataRepo.getUserById(userId);
       if (user == null) {
         signOut(); // Sign out and go to login page.
-        throw Exception("user not found in database, please login.");
+        throw Exception('user not found in database, please login.');
       }
       AnalyticsService.log(AutoLoginEvent(true));
       emit(Authenticated(userId: userId, user: user));
-      print("attemptAutoLogin, success.");
+      safePrint('attemptAutoLogin, success.');
     } on Exception {
       AnalyticsService.log(AutoLoginEvent(false));
-      emit(Unauthenticated());
-      print("attemptAutoLogin, failed.");
+      emit(const Unauthenticated());
+      safePrint('attemptAutoLogin, failed.');
     }
   }
 
   void createSession(String userId, String username) async {
-    User? user = await dataRepo.getUserById(userId);
+    var user = await dataRepo.getUserById(userId);
     if (user == null) {
       final email = await authRepo.getUserEmailFromAttributes();
       final deviceId = await _getDeviceId();
-      user = await dataRepo.createUser(userId: userId, username: username, email: email, deviceId: deviceId);
+      user = await dataRepo.createUser(
+        userId: userId,
+        username: username,
+        email: email,
+        deviceId: deviceId,
+      );
     }
     emit(Authenticated(userId: userId, user: user));
-    print('session created.');
+    safePrint('session created.');
   }
 
   void signOut() {
-    _destroySession();
-  }
-
-  void _destroySession() {
-    authRepo.signOut();
     AnalyticsService.log(SignOutEvent());
-    emit(Unauthenticated());
-    print('session destroyed.');
+    authRepo.signOut();
   }
 
   Future<String?> _getDeviceId() async {
-    var deviceInfo = DeviceInfoPlugin();
+    final deviceInfo = DeviceInfoPlugin();
     if (Platform.isIOS) {
-      var iosDeviceInfo = await deviceInfo.iosInfo;
+      final iosDeviceInfo = await deviceInfo.iosInfo;
       return iosDeviceInfo.identifierForVendor; // unique ID on iOS
     } else if (Platform.isAndroid) {
-      var androidDeviceInfo = await deviceInfo.androidInfo;
-      return androidDeviceInfo.androidId; // unique ID on Android
+      final androidDeviceInfo = await deviceInfo.androidInfo;
+      return androidDeviceInfo.id; // unique ID on Android
     }
     return null;
   }

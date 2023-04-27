@@ -10,12 +10,16 @@ class InitialFormStatus extends FormSubmissionStatus {
   const InitialFormStatus();
 }
 
-class FormSubmitting extends FormSubmissionStatus {}
+class FormSubmitting extends FormSubmissionStatus {
+  const FormSubmitting();
+}
 
-class SubmissionSuccess extends FormSubmissionStatus {}
+class SubmissionSuccess extends FormSubmissionStatus {
+  const SubmissionSuccess();
+}
 
 class SubmissionFailed extends FormSubmissionStatus {
-  final Exception exception;
+  const SubmissionFailed({required this.exception});
 
-  SubmissionFailed({required this.exception});
+  final Exception exception;
 }

@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '/app_nav_cubit.dart';
 
 class HomeView extends StatelessWidget {
@@ -18,17 +19,22 @@ class HomeView extends StatelessWidget {
       body: ListView(
         children: [
           Card(
-              child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 12),
-            child: ListTile(
-              title: const Text('Text Recognition (OCR) Solution'),
-              subtitle: const Text(
-                  'Automatically recognize text from images, and return the coordinate position and confidence scores of the text.'),
-              trailing: const Icon(Icons.arrow_circle_right_outlined, size: 38),
-              isThreeLine: true,
-              onTap: () => BlocProvider.of<AppNavCubit>(context).showOCRSolutionInHome(),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 12),
+              child: ListTile(
+                title: const Text('Text Recognition (OCR) Solution'),
+                subtitle: const Text(
+                  'Automatically recognize text from images, and return the '
+                  'coordinate position and confidence scores of the text.',
+                ),
+                trailing:
+                    const Icon(Icons.arrow_circle_right_outlined, size: 38),
+                isThreeLine: true,
+                onTap: () => BlocProvider.of<AppNavCubit>(context)
+                    .showOCRSolutionInHome(),
+              ),
             ),
-          )),
+          ),
           const Card(
             child: ListTile(
               title: Text(

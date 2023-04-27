@@ -68,6 +68,5 @@ amplifytools.xcconfig
 
 release/**
 .reuse/**
-.vscode/**
 sonar-project.properties
-analysis_options.yaml
+team-provider-info.json

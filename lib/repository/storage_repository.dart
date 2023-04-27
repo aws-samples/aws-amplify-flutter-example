@@ -6,6 +6,7 @@ import 'dart:io';
 
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
+
 import '/repository/storage_url_cache.dart';
 
 enum StorageCategory { avatar, ocrImage }
@@ -15,9 +16,9 @@ class StorageRepository {
     required StorageCategory category,
     required File file,
     String? uuid,
-    void Function(TransferProgress)? onProgress,
+    void Function(StorageTransferProgress)? onProgress,
   }) async {
-    final uploadOptions = S3UploadFileOptions(
+    const uploadOptions = StorageUploadFileOptions(
       accessLevel: StorageAccessLevel.private,
     );
     return _uploadFile(
@@ -32,9 +33,9 @@ class StorageRepository {
     required StorageCategory category,
     required File file,
     String? uuid,
-    void Function(TransferProgress)? onProgress,
+    void Function(StorageTransferProgress)? onProgress,
   }) async {
-    final uploadOptions = S3UploadFileOptions(
+    const uploadOptions = StorageUploadFileOptions(
       accessLevel: StorageAccessLevel.guest,
     );
     return _uploadFile(
@@ -48,36 +49,41 @@ class StorageRepository {
   Future<String> _uploadFile({
     required StorageCategory category,
     required File file,
-    required UploadFileOptions uploadOptions,
+    required StorageUploadFileOptions uploadOptions,
     String? uuid,
-    void Function(TransferProgress)? onProgress,
+    void Function(StorageTransferProgress)? onProgress,
   }) async {
-    try {
-      uuid = uuid ?? UUID.getUUID();
-      final suffix = file.path.split('.').last;
-      final fileName = categoryToString(category) + "/" + uuid + "." + suffix;
-      final result = await Amplify.Storage.uploadFile(
-        local: file,
-        key: fileName,
-        onProgress: onProgress,
-        options: uploadOptions,
-      );
-      return result.key;
-    } catch (e) {
-      rethrow;
-    }
+    uuid = uuid ?? UUID.getUUID();
+    final suffix = file.path.split('.').last;
+    final fileName = '${categoryToString(category)}/$uuid.$suffix';
+    final result = await Amplify.Storage.uploadFile(
+      localFile: AWSFile.fromPath(file.path),
+      key: fileName,
+      onProgress: onProgress,
+      options: uploadOptions,
+    ).result;
+    return result.uploadedItem.key;
   }
 
   Future<String> getUrl4PublicFile(String fileKey) async {
-    return await _getUrlForFile(fileKey: fileKey, accessLevel: StorageAccessLevel.guest);
+    return _getUrlForFile(
+      fileKey: fileKey,
+      accessLevel: StorageAccessLevel.guest,
+    );
   }
 
   Future<String> getUrl4ProtectedFile(String fileKey) async {
-    return await _getUrlForFile(fileKey: fileKey, accessLevel: StorageAccessLevel.protected);
+    return _getUrlForFile(
+      fileKey: fileKey,
+      accessLevel: StorageAccessLevel.protected,
+    );
   }
 
   Future<String> getUrl4PrivateFile(String fileKey) async {
-    return await _getUrlForFile(fileKey: fileKey, accessLevel: StorageAccessLevel.private);
+    return _getUrlForFile(
+      fileKey: fileKey,
+      accessLevel: StorageAccessLevel.private,
+    );
   }
 
   Future<String> _getUrlForFile({
@@ -85,18 +91,19 @@ class StorageRepository {
     required StorageAccessLevel accessLevel,
     int? expires,
   }) async {
-    try {
-      return StorageUrlCache.instance.getUrl(fileKey, () async {
-        final options = GetUrlOptions(
-          accessLevel: accessLevel,
-          expires: expires,
-        );
-        final result = await Amplify.Storage.getUrl(key: fileKey, options: options);
-        return result.url;
-      });
-    } catch (e) {
-      rethrow;
-    }
+    return StorageUrlCache.instance.getUrl(fileKey, () async {
+      final options = StorageGetUrlOptions(
+        accessLevel: accessLevel,
+        pluginOptions: S3GetUrlPluginOptions(
+          expiresIn: expires == null
+              ? const Duration(minutes: 15)
+              : Duration(seconds: expires),
+        ),
+      );
+      final result =
+          await Amplify.Storage.getUrl(key: fileKey, options: options).result;
+      return result.url.toString();
+    });
   }
 
   String categoryToString(StorageCategory category) {

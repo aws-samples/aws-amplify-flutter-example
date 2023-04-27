@@ -2,14 +2,20 @@
 //
 // SPDX-License-Identifier: MIT-0
 
-abstract class OCRDetailEvent {}
-
-class OCRDetailLoadEvent extends OCRDetailEvent {
-  final String id;
-
-  OCRDetailLoadEvent({required this.id});
+abstract class OCRDetailEvent {
+  const OCRDetailEvent();
 }
 
-class OCRDetailRefreshEvent extends OCRDetailEvent {}
+class OCRDetailLoadEvent extends OCRDetailEvent {
+  const OCRDetailLoadEvent({required this.id});
 
-class OCRDetailClearEvent extends OCRDetailEvent {}
+  final String id;
+}
+
+class OCRDetailRefreshEvent extends OCRDetailEvent {
+  const OCRDetailRefreshEvent();
+}
+
+class OCRDetailClearEvent extends OCRDetailEvent {
+  const OCRDetailClearEvent();
+}

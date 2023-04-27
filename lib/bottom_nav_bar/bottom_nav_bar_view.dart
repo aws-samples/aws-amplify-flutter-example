@@ -4,12 +4,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '/bottom_nav_bar/bottom_nav_bar_cubit.dart';
 import '/home/home_navigator.dart';
 import '/profile/profile_view.dart';
 
 class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+  const BottomNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +25,17 @@ class BottomNavBar extends StatelessWidget {
             ),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: state,
-              onTap: (index) => context.read<BottomNavBarCubit>().selectTab(index),
+              onTap: (index) =>
+                  context.read<BottomNavBarCubit>().selectTab(index),
               items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-                BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person),
+                  label: 'Profile',
+                ),
               ],
             ),
           );

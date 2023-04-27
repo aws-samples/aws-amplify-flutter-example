@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '/home/home_navigator_cubit.dart';
 import '/home/home_view.dart';
 
@@ -13,18 +14,19 @@ class HomeNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => HomeNavigatorCubit(),
-        child: BlocBuilder<HomeNavigatorCubit, HomeNavigatorState>(
-          builder: (context, state) {
-            return Navigator(
-              pages: const [
-                MaterialPage(child: HomeView()),
-              ],
-              onPopPage: (route, result) {
-                return route.didPop(result);
-              },
-            );
-          },
-        ));
+      create: (context) => HomeNavigatorCubit(),
+      child: BlocBuilder<HomeNavigatorCubit, HomeNavigatorState>(
+        builder: (context, state) {
+          return Navigator(
+            pages: const [
+              MaterialPage(child: HomeView()),
+            ],
+            onPopPage: (route, result) {
+              return route.didPop(result);
+            },
+          );
+        },
+      ),
+    );
   }
 }

@@ -2,18 +2,18 @@
 //
 // SPDX-License-Identifier: MIT-0
 
-import 'package:amplify_core/amplify_core.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 
 class Record {
-  final String id;
-  final String url;
-  final TemporalDateTime? createdAt;
-  final String? content;
-
-  Record({
+  const Record({
     required this.id,
     required this.url,
     this.createdAt,
     this.content,
   });
+
+  final String id;
+  final String url;
+  final TemporalDateTime? createdAt;
+  final String? content;
 }

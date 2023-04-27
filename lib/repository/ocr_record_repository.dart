@@ -12,37 +12,28 @@ class OCRRecordRepository {
     required String userId,
     GraphQLRequest<PaginatedResult<OCRRecord>>? requestForNextResult,
   }) async {
-    try {
-      var request = requestForNextResult ??
-          ModelQueries.list(
-            OCRRecord.classType,
-            limit: 30,
-            // where: OCRRecord.USERID.eq(userId),
-          );
-      final response = await Amplify.API.query(request: request).response;
-      return response.data;
-    } catch (e) {
-      rethrow;
-    }
+    final request = requestForNextResult ??
+        ModelQueries.list(
+          OCRRecord.classType,
+          limit: 30,
+          // where: OCRRecord.USERID.eq(userId),
+        );
+    final response = await Amplify.API.query(request: request).response;
+    return response.data;
   }
 
   Future<OCRRecord?> getOCRRecordById(String id) async {
-    try {
-      final request = ModelQueries.get(OCRRecord.classType, id);
-      final response = await Amplify.API.query(request: request).response;
-      return response.data;
-    } catch (e) {
-      rethrow;
-    }
+    final request = ModelQueries.get(
+      OCRRecord.classType,
+      OCRRecordModelIdentifier(id: id),
+    );
+    final response = await Amplify.API.query(request: request).response;
+    return response.data;
   }
 
   Future<OCRRecord> saveOCRRecord(OCRRecord ocrRecord) async {
-    try {
-      final request = ModelMutations.create(ocrRecord);
-      final response = await Amplify.API.mutate(request: request).response;
-      return response.data!;
-    } catch (e) {
-      rethrow;
-    }
+    final request = ModelMutations.create(ocrRecord);
+    final response = await Amplify.API.mutate(request: request).response;
+    return response.data!;
   }
 }

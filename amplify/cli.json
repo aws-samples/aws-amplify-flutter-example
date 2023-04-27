@@ -12,7 +12,8 @@
       "suppressschemamigrationprompt": true,
       "securityenhancementnotification": false,
       "showfieldauthnotification": false,
-      "usesubusernamefordefaultidentityclaim": true
+      "usesubusernamefordefaultidentityclaim": true,
+      "respectPrimaryKeyAttributesOnConnectionField": true
     },
     "frontend-ios": {
       "enablexcodeintegration": true
@@ -50,5 +51,8 @@
     "project": {
       "overrides": true
     }
+  },
+  "debug": {
+    "shareProjectConfig": false
   }
 }

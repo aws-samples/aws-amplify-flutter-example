@@ -45,8 +45,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.amazon.jasonzjs.power_toolkit"
-//        minSdkVersion flutter.minSdkVersion
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -59,6 +58,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    namespace 'com.amazon.jasonzjs.power_toolkit'
 }
 
 flutter {

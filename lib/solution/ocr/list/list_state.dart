@@ -7,16 +7,7 @@ import '../record.dart';
 enum LoadingState { initial, inProgress, success, failed }
 
 class OCRListState {
-  bool imageSourceActionSheetIsVisible;
-  bool uploading;
-
-  LoadingState loadingState;
-  final List<Record>? records;
-  final bool? canLoadNextPage;
-
-  final Exception? error;
-
-  OCRListState({
+  const OCRListState({
     this.records,
     this.canLoadNextPage,
     this.loadingState = LoadingState.initial,
@@ -24,6 +15,15 @@ class OCRListState {
     this.uploading = false,
     this.error,
   });
+
+  final bool imageSourceActionSheetIsVisible;
+  final bool uploading;
+
+  final LoadingState loadingState;
+  final List<Record>? records;
+  final bool? canLoadNextPage;
+
+  final Exception? error;
 
   OCRListState copyWith({
     List<Record>? records,
@@ -37,7 +37,8 @@ class OCRListState {
       records: records ?? this.records,
       canLoadNextPage: canLoadNextPage ?? this.canLoadNextPage,
       loadingState: loadingState ?? this.loadingState,
-      imageSourceActionSheetIsVisible: imageSourceActionSheetIsVisible ?? this.imageSourceActionSheetIsVisible,
+      imageSourceActionSheetIsVisible: imageSourceActionSheetIsVisible ??
+          this.imageSourceActionSheetIsVisible,
       uploading: uploading ?? this.uploading,
       error: error ?? this.error,
     );
